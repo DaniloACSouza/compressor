@@ -55,6 +55,8 @@
 #define A2 39                                       //DEFINE A ENTRADA DO SENSOR DE OXIGENIO
 #define A3 36
 
+#define NUM_READINGS 10  // Número de leituras a serem feitas para calcular a média
+
 /*============================================================================================
  *                                         WIFI
  ==============================================================================================*/
@@ -109,6 +111,16 @@ int statecompressor1 = '0';
 int statecompressor2 = '0';
 int usina = '0';
 int compressorINPUT = 0;
+
+// Função para calcular a média das leituras analógicas
+int readAnalogAverage(int pin) {
+    long sum = 0;  // Usamos long para evitar overflow
+    for (int i = 0; i < NUM_READINGS; i++) {
+        sum += analogRead(pin);
+        delay(10);  // Pequeno atraso para permitir estabilização
+    }
+    return sum / NUM_READINGS;  // Retorna a média
+}
 
 //Prototypes
 void initSerial();
