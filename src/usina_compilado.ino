@@ -338,8 +338,8 @@ if (central == '0')
   *                 LEITURA E ENVIO DOS DADOS DO SENSOR DE PRESSÃO DOS COMPRESSORES
   ====================================================================================================*/
 
-  leitura = (analogRead(A0) -590);
-  pressao = (leitura * 16 / 4095);
+  leitura = (readAnalogAverage(A0) -590);
+  pressao = (leitura * 20 / 4095);
   char TEMP[5];
   String CUR = String(pressao, 1);
   CUR.toCharArray(TEMP, 4);
@@ -356,7 +356,7 @@ if (central == '0')
   *                            LEITURA E ENVIO DOS DADOS DO SENSOR DE OXIGENIO
   ==================================================================================================*/
 
-  oxigenio = (analogRead(A1) -590);
+  oxigenio = (readAnalogAverage(A1) -590);
   concentracao = (oxigenio * 100 / 4095);
   char TEMP1[5];
   String CUR1 = String(concentracao, 1);
@@ -375,8 +375,8 @@ if (central == '0')
   *                           LEITURA E ENVIO DOS DADOS DOS SENSORES DO BLOCO CENTRAL
   ====================================================================================================*/
 
-  esquerdo = (analogRead(A2) - 590);
-  cilindroEsq = (esquerdo * 300 / 4095);
+  esquerdo = (readAnalogAverage(A2) - 590);
+  cilindroEsq = (esquerdo * 20 / 4095);
   char TEMP2[5];
   String CUR2 = String(cilindroEsq, 3);
   CUR2.toCharArray(TEMP2, 8);
@@ -391,7 +391,7 @@ if (central == '0')
 
 /*-----------------------------------------------------------------------------------------------------------------*/
   
-  direito = (analogRead(A3) - 590);
+  direito = (readAnalogAverage(A3) - 590);
   cilindroDir = (direito * 300 / 4095);
   char TEMP3[5];
   String CUR3 = String(cilindroDir, 3);
